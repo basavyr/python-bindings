@@ -75,7 +75,7 @@ jobs:
       #     command: "g++ -v && which g++ &&gcc -v && which gcc"
       - run:
           name: install python2 and python3 with dnf
-          command: dnf groupinstall -y python2 python3
+          command: dnf install -y python2 python3
       # - run:
       #     name: install python 3 with dnf
       #     command: dnf -y install python3
