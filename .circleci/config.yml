@@ -34,12 +34,12 @@ jobs:
       - run:
           name: check the frontend envar
           command: echo $DEBIAN_FRONTEND
-      # - run:
-      #     name: Install the required packages
-      #     command: "apt-get install -y g++ gcc python python3"
-      # - run:
-      #     name: checks integrity of the packages
-      #     command: "g++ -v && which g++ && python --version && which python && python3 --version && which python3"
+      - run:
+          name: Install the required packages
+          command: "apt-get install -yqq g++ python python3"
+      - run:
+          name: checks integrity of the packages
+          command: "g++ -v && which g++ &&gcc -v && which gcc && python --version && which python && python3 --version && which python3"
   # CENTOS
   job-2-centos:
     docker:
