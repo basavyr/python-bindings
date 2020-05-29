@@ -4,40 +4,40 @@ jobs:
   job-0-debian:
     docker:
       - image: "debian:latest"
-          steps:
+    steps:
       - checkout
       - run:
           name: Check platform
           command: " uname -a"
       - run:
           name: Check content of the repo
-          command: " ls -la"
+          command: "ls -la"
   job-1-ubuntu:
     docker:
       - image: "ubuntu:latest"
-          steps:
+    steps:
       - checkout
       - run:
           name: Check platform
-          command: " uname -a"
+          command: "uname -a"
       - run:
           name: Check content of the repo
-          command: " ls -la"
+          command: "ls -la"
   job-2-centos:
     docker:
       - image: "centos:latest"
-          steps:
+    steps:
       - checkout
       - run:
           name: Check platform
-          command: " uname -a"
+          command: "uname -a"
       - run:
           name: Check content of the repo
-          command: " ls -la"
+          command: "ls -la"
 
 workflows:
   version: 2.1
-  life-rips:
+  start-containers:
     jobs:
       - job-0-debian
       - job-1-ubuntu
