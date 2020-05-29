@@ -16,9 +16,15 @@ jobs:
       - run:
           name: Install the required dev packages
           command: "apt-get install -yqq g++ python python3"
+      # - run:
+      #     name: checks integrity of the packages
+      #     command: "g++ -v && which g++ &&gcc -v && which gcc && python --version && which python && python3 --version && which python3"
       - run:
-          name: checks integrity of the packages
-          command: "g++ -v && which g++ &&gcc -v && which gcc && python --version && which python && python3 --version && which python3"
+          name: install git
+          command: apt-get install -yqq git
+      - run:
+          name: install cmake
+          command: apt-get install -yqq cmake
   # UBUNTU
   job-1-ubuntu:
     docker:
@@ -40,9 +46,15 @@ jobs:
       - run:
           name: Install the required packages
           command: "apt-get install -yqq g++ python python3"
+      # - run:
+      #     name: checks integrity of the packages
+      #     command: "g++ -v && which g++ &&gcc -v && which gcc && python --version && which python && python3 --version && which python3"
       - run:
-          name: checks integrity of the packages
-          command: "g++ -v && which g++ &&gcc -v && which gcc && python --version && which python && python3 --version && which python3"
+          name: install git
+          command: apt-get install -yqq git
+      - run:
+          name: install cmake
+          command: apt-get install -yqq cmake
   # CENTOS
   job-2-centos:
     docker:
@@ -53,24 +65,29 @@ jobs:
           name: install updates
           command: yum -y update && yum -y upgrade
       - run:
-          name: install which package so we can check what is good 
-          command: yum -y install which 
+          name: install which package so we can check what is good
+          command: yum -y install which
       - run:
           name: install dev package
           command: dnf groupinstall -y "Development Tools"
+      # - run:
+      #     name: checks integrity of the packages
+      #     command: "g++ -v && which g++ &&gcc -v && which gcc"
       - run:
-          name: checks integrity of the packages
-          command: "g++ -v && which g++ &&gcc -v && which gcc"
+          name: install python2 and python3 with dnf
+          command: dnf groupinstall -y python2 python3
+      # - run:
+      #     name: install python 3 with dnf
+      #     command: dnf -y install python3
+      # - run:
+      #     name: check python integrity
+      #     command: which python2 && python2 --version && which python3 && python3 --version
       - run:
-          name: install python 2 with dnf
-          command: dnf -y install python2
+          name: install git
+          command: yum install -y git
       - run:
-          name: install python 3 with dnf
-          command: dnf -y install python3
-      - run:
-          name: check python integrity
-          command: which python2 && python2 --version && which python3 && python3 --version && which python
-
+          name: install cmake
+          command: yum install -y cmake
       # - run:
       #     name: install dev package
       #     command: yum install -y python python3
