@@ -9,18 +9,21 @@
 #endif
 
 //module function is defined the .cc file
-static PyObject *showstring(PyObject *self, PyObject *args);
+static PyObject *string(PyObject *self, PyObject *args);
+
+const char method_doc[] = "This is the documentation for the method";
+const char module_doc[] = "This is the documentation for the module";
 
 //registration table
 static PyMethodDef showstringModule_methods[] = {
-    {"showstring", showstring, METH_VARARGS, "Doc: A function that returns the input string"},
+    {"showstring", string, METH_VARARGS, method_doc},
     {NULL, NULL, 0, NULL}};
 
 #ifdef PY3K
 static struct PyModuleDef showstringModuleDef = {
     PyModuleDef_HEAD_INIT,
     "showstring",
-    "Doc: A function that returns the input string - python3",
+    module_doc,
     -1,
     showstringModule_methods};
 //the init function for building with python3
@@ -32,6 +35,6 @@ PyMODINIT_FUNC PyInit_showstring(void)
 // module initializer for python2
 PyMODINIT_FUNC initshowstring(void)
 {
-    Py_InitModule3("showstring", showstringModule_methods, "moduleDocs - python2");
+    Py_InitModule3("showstring", showstringModule_methods, module_doc);
 }
 #endif

@@ -8,7 +8,7 @@ std::string return_string(std::string p)
     return result_string;
 }
 
-PyObject *showstring(PyObject *self, PyObject *args)
+PyObject *string(PyObject *self, PyObject *args)
 {
     PyObject *result = NULL;
     char *string;

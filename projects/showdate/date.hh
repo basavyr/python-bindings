@@ -12,16 +12,19 @@
 //module function is defined the .cc file
 static PyObject *date(PyObject *self, PyObject *args);
 
+const char method_doc[] = "This is the documentation for the method";
+const char module_doc[] = "This is the documentation for the module";
+
 //registration table
 static PyMethodDef showdateModule_methods[] = {
-    {"showdate", date, METH_VARARGS, "Doc: A function that returns the input string"},
+    {"showdate", date, METH_VARARGS, method_doc},
     {NULL, NULL, 0, NULL}};
 
 #ifdef PY3K
 static struct PyModuleDef showdateModuleDef = {
     PyModuleDef_HEAD_INIT,
     "showdate",
-    "Doc: A function that returns the input string - python3",
+    module_doc,
     -1,
     showdateModule_methods};
 //the init function for building with python3
@@ -33,6 +36,6 @@ PyMODINIT_FUNC PyInit_showdate(void)
 // module initializer for python2
 PyMODINIT_FUNC initshowdate(void)
 {
-    Py_InitModule3("showdate", showdateModule_methods, "moduleDocs - python2");
+    Py_InitModule3("showdate", showdateModule_methods, module_doc);
 }
 #endif

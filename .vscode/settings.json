@@ -1,6 +1,21 @@
 {
     "files.associations": {
-        "string": "cpp"
+        "string": "cpp",
+        "__config": "cpp",
+        "__cxx_version": "cpp",
+        "__debug": "cpp",
+        "__locale": "cpp",
+        "__string": "cpp",
+        "bitset": "cpp",
+        "chrono": "cpp",
+        "cstdlib": "cpp",
+        "ios": "cpp",
+        "iosfwd": "cpp",
+        "locale": "cpp",
+        "stdexcept": "cpp",
+        "string_view": "cpp",
+        "system_error": "cpp",
+        "typeinfo": "cpp"
     },
     "python.pythonPath": "/usr/bin/python3"
 }
