@@ -1,10 +1,12 @@
 echo 'WE MADE IT INTO THE UNIX SCRIPT'
-# echo '*********************************'
-# echo 'Building the C++ extenstion for Python@2'
-# echo '*********************************'
-# rm *.out
-# rm -rf build/*
-# /usr/bin/python2 setup.py build
+echo '*********************************'
+echo 'Building the C++ extenstion for Python@2'
+echo '*********************************'
+rm *.out
+rm -rf build/*
+/usr/bin/python2 setup.py build
+cd build/
+ls -la
 # echo '*********************************'
 # echo 'Testing the C++ extenstion for Python@2'
 # echo '*********************************'

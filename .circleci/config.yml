@@ -72,7 +72,10 @@ jobs:
           command: dnf install -y python2 python3
       - run:
           name: check what os we got and run platform dependent script
-          command: cd projects/showdate/ && chmod 775 check_os.sh && ./check_os.sh && cat os && ls -la
+          command: cd projects/showdate/ && chmod 775 check_os.sh && ./check_os.sh
+      - run:
+          name: clean up the mess
+          command: cd projects/showdate/ && chmod 775 wipebuild.sh && ./wipebuild.sh && ls -la
       # - run:
       #     name: install python 3 with dnf
       #     command: dnf -y install python3
