@@ -53,6 +53,9 @@ jobs:
           name: install updates
           command: yum -y update && yum -y upgrade
       - run:
+          name: install which package so we can check what is good 
+          command: yum -y install which 
+      - run:
           name: install dev package
           command: dnf groupinstall -y "Development Tools"
       - run:
