@@ -25,4 +25,4 @@ An individual project has some core parts which are consistent across the entire
   1. It checks if there are previous built extensions into the main tree, and if true, deletes them.
   2. Starts a build pipeline for **Python2** and proceeds to `cd` into the location of the obtained `.so` library.
   3. Once inside the corresponding shared library's source directory, it copies the python test file `test.py` next to the library, and finally it executed the python script.
-  4. Another similar pipeline is started, but for **Python3**, following the same procedures. 
+  4. Another similar pipeline is started, but for **Python3**, following the same procedures.
