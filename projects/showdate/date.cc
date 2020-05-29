@@ -15,14 +15,7 @@ std::string hey(std::string time, std::string user)
     return say_hi + '\n';
 }
 
-int main()
-{
-    auto date0 = return_date(std::chrono::system_clock::now());
-    auto user = "Larisa";
-    std::cout << hey(date0, user);
-}
-
-static PyObject *date(PyObject *self, PyObject *args)
+PyObject *date(PyObject *self, PyObject *args)
 {
     char *user = NULL;
     PyObject *result = NULL;
@@ -33,6 +26,6 @@ static PyObject *date(PyObject *self, PyObject *args)
     auto time = return_date(std::chrono::system_clock::now());
     auto ret_val = hey(time, user);
     result = Py_BuildValue("s", ret_val.c_str());
-    Py_DECREF(result);
+    // Py_DECREF(result);
     return result;
 }

@@ -1,4 +1,4 @@
-import showstring as x
+import showdate as x
 
 print("")
 print("**** MODULE IMPLEMENTATION TEST ****")
@@ -8,7 +8,7 @@ print("")
 
 
 def run_module(user):
-    print(x.showstring(user))
+    print(x.showdate(user))
 
 
 y = "Darwin"

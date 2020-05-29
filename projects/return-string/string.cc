@@ -1,27 +1,20 @@
 #include "return_string.h"
-#include <string>
-#include <iostream>
 
-// std::string return_string(char *p)
-// {
-//     std::string result_string = "Hi ";
-//     result_string.append(std::string(p));
-//     result_string.append("!\n");
-//     return result_string;
-// }
-
-// static PyObject *showstring(PyObject *self, PyObject *args)
-// {
-//     PyObject *result = NULL;
-//     char *string;
-//     if (!PyArg_ParseTuple(args, "s", &string))
-//         return NULL;
-//     result = Py_BuildValue("s", return_string(string).c_str()); //transform the string to a c-string
-//     return result;
-// }
-
-int main()
+std::string return_string(std::string p)
 {
-    char *string = "Darwin";
-    std::cout << return_string(string).c_str();
+    std::string result_string = "Hi ";
+    result_string.append(p);
+    result_string.append("!\n");
+    return result_string;
+}
+
+PyObject *showstring(PyObject *self, PyObject *args)
+{
+    PyObject *result = NULL;
+    char *string;
+    if (!PyArg_ParseTuple(args, "s", &string))
+        return NULL;
+    std::string user_copy(string);
+    result = Py_BuildValue("s", return_string(user_copy).c_str()); //transform the string to a c-string
+    return result;
 }
