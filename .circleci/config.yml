@@ -17,9 +17,6 @@ jobs:
           name: Install the required dev packages
           command: "apt-get install -yqq g++ python python3"
       - run:
-          name: runs the script for installing extension
-          command: chmod 775 build_unix.sh && ./build_unix.sh
-      - run:
           name: check what os we got and run platform dependent script
           command: cd projects/showdate/ && chmod 775 check_os.sh && ./check_os.sh
       # - run:
@@ -46,9 +43,6 @@ jobs:
       - run:
           name: Install the required packages
           command: "apt-get install -yqq g++ python python3"
-      - run:
-          name: runs the script for installing extension
-          command: chmod 775 build_unix.sh && ./build_unix.sh
       - run:
           name: check what os we got and run platform dependent script
           command: cd projects/showdate/ && chmod 775 check_os.sh && ./check_os.sh
@@ -78,7 +72,7 @@ jobs:
           command: dnf install -y python2 python3
       - run:
           name: check what os we got and run platform dependent script
-          command: cd projects/showdate/ && chmod 775 check_os.sh && ./check_os.sh
+          command: cd projects/showdate/ && chmod 775 check_os.sh && ./check_os.sh && cat os && ls -la
       # - run:
       #     name: install python 3 with dnf
       #     command: dnf -y install python3
@@ -96,6 +90,6 @@ workflows:
   version: 2.1
   start-containers:
     jobs:
-      - job-0-debian
-      - job-1-ubuntu
+      # - job-0-debian
+      # - job-1-ubuntu
       - job-2-centos
