@@ -22,10 +22,10 @@ jobs:
           command: "apt-get update && apt-get install -y sudo &&  rm -rf /var/lib/apt/lists/* "
       - run:
           name: Install the required packages
-          command: "sudo apt-get install -y g++ && sudo apt-get install -y python && sudo apt-get install -y python3"
+          command: "apt-get install -yqq g++ &&apt-get install -yqq python && apt-get install -yqq python3"
       - run:
           name: checks integrity of the packages
-          command: "g++ -v && which g++ && python -v && which python && python3 -v && which python3"
+          command: "g++ -v && which g++ && python --version && which python && python3 --version && which python3"
   job-2-centos:
     docker:
       - image: "centos:latest"
