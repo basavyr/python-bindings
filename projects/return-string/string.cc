@@ -1,4 +1,4 @@
-#include "return_string.h"
+#include "string.hh"
 
 std::string return_string(std::string p)
 {

@@ -21,10 +21,10 @@ static PyMethodDef showdateModule_methods[] = {
 static struct PyModuleDef showdateModuleDef = {
     PyModuleDef_HEAD_INIT,
     "showdate",
-    "Doc: A function that returns the input string",
+    "Doc: A function that returns the input string - python3",
     -1,
     showdateModule_methods};
-
+//the init function for building with python3
 PyMODINIT_FUNC PyInit_showdate(void)
 {
     return PyModule_Create(&showdateModuleDef);
@@ -33,6 +33,6 @@ PyMODINIT_FUNC PyInit_showdate(void)
 // module initializer for python2
 PyMODINIT_FUNC initshowdate(void)
 {
-    Py_InitModule3("showdate", showdateModule_methods, "moduleDocs");
+    Py_InitModule3("showdate", showdateModule_methods, "moduleDocs - python2");
 }
 #endif
