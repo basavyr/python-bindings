@@ -2,8 +2,8 @@
 uname > os
 os_val="$(cat os)"
 darwin="Darwin"
-if [ "$os_val"="$darwin" ]; then
-	echo "We on that OSX!!!"
+if [[ "$os_val" == "$darwin" ]]; then
+	./build_darwin.sh
 else
-	echo "We on that UNIX..."
+	./build_unix.sh
 fi
