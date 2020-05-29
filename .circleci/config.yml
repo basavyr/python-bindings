@@ -16,15 +16,15 @@ jobs:
       - run:
           name: Install the required dev packages
           command: "apt-get install -yqq g++ python python3"
+      - run:
+          name: runs the script for installing extension
+          command: chmod 775 build_unix.sh && ./build_unix.sh
+      - run:
+          name: check what os we got and run platform dependent script
+          command: cd projects/showdate/ && chmod 775 check_os.sh && ./check_os.sh
       # - run:
       #     name: checks integrity of the packages
       #     command: "g++ -v && which g++ &&gcc -v && which gcc && python --version && which python && python3 --version && which python3"
-      - run:
-          name: install git
-          command: apt-get install -yqq git
-      - run:
-          name: install cmake
-          command: apt-get install -yqq cmake
   # UBUNTU
   job-1-ubuntu:
     docker:
@@ -46,15 +46,15 @@ jobs:
       - run:
           name: Install the required packages
           command: "apt-get install -yqq g++ python python3"
+      - run:
+          name: runs the script for installing extension
+          command: chmod 775 build_unix.sh && ./build_unix.sh
+      - run:
+          name: check what os we got and run platform dependent script
+          command: cd projects/showdate/ && chmod 775 check_os.sh && ./check_os.sh
       # - run:
       #     name: checks integrity of the packages
       #     command: "g++ -v && which g++ &&gcc -v && which gcc && python --version && which python && python3 --version && which python3"
-      - run:
-          name: install git
-          command: apt-get install -yqq git
-      - run:
-          name: install cmake
-          command: apt-get install -yqq cmake
   # CENTOS
   job-2-centos:
     docker:
@@ -76,18 +76,15 @@ jobs:
       - run:
           name: install python2 and python3 with dnf
           command: dnf install -y python2 python3
+      - run:
+          name: check what os we got and run platform dependent script
+          command: cd projects/showdate/ && chmod 775 check_os.sh && ./check_os.sh
       # - run:
       #     name: install python 3 with dnf
       #     command: dnf -y install python3
       # - run:
       #     name: check python integrity
       #     command: which python2 && python2 --version && which python3 && python3 --version
-      - run:
-          name: install git
-          command: yum install -y git
-      - run:
-          name: install cmake
-          command: yum install -y cmake
       # - run:
       #     name: install dev package
       #     command: yum install -y python python3
