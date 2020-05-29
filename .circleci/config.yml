@@ -56,11 +56,24 @@ jobs:
           name: install dev package
           command: dnf groupinstall -y "Development Tools"
       - run:
-          name: install dev package
-          command: yum install -y python python3
-      - run:
           name: checks integrity of the packages
-          command: "g++ -v && which g++ &&gcc -v && which gcc && python --version && which python && python3 --version && which python3"
+          command: "g++ -v && which g++ &&gcc -v && which gcc"
+      - run:
+          name: install python 2 with dnf
+          command dnf -y install python2
+      - run:
+          name: install python 3 with dnf
+          command: dnf -y install python3
+      - run:
+          name: check python integrity
+          command: which python2 && python2 --version && which python3 && python3 --version && which python 
+
+      # - run:
+      #     name: install dev package
+      #     command: yum install -y python python3
+      # - run:
+      #     name: checks integrity of the packages
+      #     command: "g++ -v && which g++ &&gcc -v && which gcc && python --version && which python && python3 --version && which python3"
 
 workflows:
   version: 2.1
