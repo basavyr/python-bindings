@@ -54,7 +54,7 @@ jobs:
           command: yum -y update && yum -y upgrade
       - run:
           name: install dev package
-          command: dnf groupinstall "Development Tools"
+          command: dnf groupinstall -y "Development Tools"
       - run:
           name: install dev package
           command: yum install -y python python3
