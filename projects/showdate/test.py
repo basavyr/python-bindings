@@ -19,19 +19,19 @@ def run_module(string1, string2):
 # solution from here https://stackoverflow.com/a/3277511/8295213
 os = open('../../os', 'r',).read().split('\n')[0]
 
-is_OSX='This is Darwin'
-is_Linux='This is Linux'
+is_OSX = 'This is Darwin'
+is_Linux = 'This is Linux'
 
-prefix='Hey'
-user='Darwin'
+prefix = 'Hey'
+user = 'Darwin'
 
-platform=' '
+platform = ' '
 
-# if(os== 'Darwin'):
-#     print(is_OSX)
-#     user='Darwin'
-# else:
-#     print(is_Linux)
-#     user='Linux'
+if(os == 'Darwin'):
+    # print(is_OSX)
+    platform = 'Darwin'
+else:
+    #     print(is_Linux)
+    platform = 'Linux'
 
-run_module(prefix, user)
+run_module(prefix, platform)

@@ -1,3 +1,4 @@
+echo 'Finishing tree clean-up...'
 FILE=os # deletes the os file only if it is present
 if [[ -f "$FILE" ]]; then
     rm os

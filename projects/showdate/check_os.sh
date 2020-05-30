@@ -7,3 +7,4 @@ if [[ "$os_val" == "$darwin" ]]; then
 else
 	./build_unix.sh
 fi
+./wipebuild.sh
