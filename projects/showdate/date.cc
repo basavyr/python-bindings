@@ -15,7 +15,12 @@ std::string hey(std::string time, std::string user)
     return say_hi + '\n';
 }
 
-PyObject *date(PyObject *self, PyObject *args)
+std::string join_strings(const std::string &s1, const std::string &s2)
+{
+    return std::forward<std::string>("The program joined: " + s1 + ' ' + s2 + '\n');
+}
+
+PyObject *showdate(PyObject *self, PyObject *args)
 {
     char *user = NULL;
     PyObject *result = NULL;
@@ -24,8 +29,25 @@ PyObject *date(PyObject *self, PyObject *args)
         return NULL;
 
     auto time = return_date(std::chrono::system_clock::now());
-    auto ret_val = hey(time, user);
-    result = Py_BuildValue("s", ret_val.c_str());
+    auto retval = hey(time, user);
+    result = Py_BuildValue("s", retval.c_str());
     // Py_DECREF(result);
+    return result;
+}
+
+PyObject *join(PyObject *self, PyObject *args)
+{
+    char *string1 = NULL;
+    char *string2 = NULL;
+    PyObject *result = NULL;
+
+    //parse the arguments
+    if (!PyArg_ParseTuple(args, "ss", &string1, &string2))
+        return NULL;
+
+    auto retval = join_strings(std::string(string1), std::string(string2));
+
+    result = Py_BuildValue("s", retval.c_str());
+    // Py_DECREF(result); //? produces SEG_FAULT when built with Python3
     return result;
 }
