@@ -48,16 +48,25 @@ jobs:
           command: "apt-get install -yqq g++ python"
       - run:
           name: Install the required packages
-          command: "apt-get install -yqq python3"
+          command: "sudo apt-get install -yqq python3"
       - run:
           name: python devel package
           command: "apt-get install -y python-dev"
       - run:
-          name: installs distutils for building bindings with python #check docs for info on that
-          command: "apt-get install -yqq python3-distutils"
+          name: python devel3 package
+          command: "sudo apt-get install -y python3-dev"
       - run:
-          name: checks what include
+          name: installs distutils for building bindings with python #check docs for info on that
+          command: "sudo apt-get install -yqq python3-distutils"
+      - run:
+          name: checks include for python
           command: ls /usr/include/
+      - run:
+          name: checks local include for python
+          command: ls -la /usr/local/include/
+      - run:
+          name: checks $CPATH envar
+          command: echo $CPATH
       # - run:
       #     name: exports the cpath for fixing missing header
       #     command: |
