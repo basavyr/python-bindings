@@ -72,7 +72,7 @@ jobs:
           command: dnf install -y python2 python3
       - run:
           name: install python2 devel package # for getting the "Python.h" header file
-          command: dnf install -y python2-devel
+          command: dnf install -y python2-devel # fixes missing header on build time
       - run:
           name: check what os we got and run platform dependent script
           command: cd projects/showdate/ && chmod 775 check_os.sh && ./check_os.sh
