@@ -32,6 +32,12 @@ In this document a walkthrough on how to export modules with actual working meth
 There were some issues with trying to **build** the Python extension written in `C++`. This is due to a first error: *missing `"Python.h"`* header file. In order to get that sorted, the python **development** packages must be installed (the base ones which were previously installed are not enough).
 The devel packages can be found here (for python2): https://centos.pkgs.org/8/okey-x86_64/python2-devel-2.7.15-24.el8.x86_64.rpm.html
 
+The devel packages for python3 can be downloaded from here (for Centos8): [link](https://centos.pkgs.org/8/centos-appstream-x86_64/python36-devel-3.6.8-2.module_el8.1.0+245+c39af44f.x86_64.rpm.html)
+
+```bash
+dnf install python36-devel
+```
+
 2. Issue with missing file or dir:
 
 ```bash
@@ -127,3 +133,4 @@ PyMODINIT_FUNC PyInit_showdate() //the init function when building with python3
     return PyModule_Create(&showdateModuleDef);
 }
 ```
+
