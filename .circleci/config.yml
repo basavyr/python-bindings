@@ -75,7 +75,7 @@ jobs:
           command: dnf install -y python2-devel # fixes missing header on build time
       - run:
           name: install python3 devel package # for getting the "Python.h" header file when building with python3
-          command: dnf install python36-devel # fixes missing header on build time
+          command: dnf install -y python36-devel # fixes missing header on build time
       - run:
           name: check what os we got and run platform dependent script
           command: cd projects/showdate/ && chmod 775 check_os.sh && ./check_os.sh
