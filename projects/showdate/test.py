@@ -23,7 +23,6 @@ is_OSX = 'This is Darwin'
 is_Linux = 'This is Linux'
 
 prefix = 'Hey'
-user = 'Darwin'
 
 platform = ' '
 
