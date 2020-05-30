@@ -15,13 +15,27 @@ jobs:
           command: apt-get update -qqy && apt-get -qqy install
       - run:
           name: Install the required dev packages
-          command: "apt-get install -yqq g++ python python3"
+          command: "apt-get install -yqq g++ python"
+      - run:
+          name: Install python3 separately
+          command: "sudo apt-get install -yqq python3"
       - run:
           name: Install python devel
           command: "apt-get install -yqq python-dev"
       - run:
+          name: python devel3 package
+          command: "sudo apt-get install -yqq python3-dev"
+      - run:
           name: installs distutils for building bindings with python3 #check docs for info on that
           command: "apt-get install -yqq python3-distutils"
+      - run:
+          name: exports the cpath for fixing missing header
+          command: |
+            echo export CPATH=/usr/include/python3.8/ >> $BASH_ENV
+            source $BASH_ENV
+      - run:
+          name: checks $CPATH envar after source
+          command: echo $CPATH
       - run:
           name: check what os we got and run platform dependent script
           command: cd projects/showdate/ && chmod 775 check_os.sh && ./check_os.sh
@@ -54,13 +68,10 @@ jobs:
           command: "apt-get install -y python-dev"
       - run:
           name: python devel3 package
-          command: "sudo apt-get install -y python3-dev"
+          command: "sudo apt-get install -yqq python3-dev"
       - run:
           name: installs distutils for building bindings with python #check docs for info on that
           command: "sudo apt-get install -yqq python3-distutils"
-      - run:
-          name: checks $CPATH envar
-          command: echo $CPATH
       - run:
           name: exports the cpath for fixing missing header
           command: |
@@ -91,8 +102,11 @@ jobs:
           name: install dev package
           command: dnf groupinstall -y "Development Tools"
       - run:
-          name: install python2 and python3 with dnf
-          command: dnf install -y python2 python3
+          name: install python2 with dnf
+          command: dnf install -y python2
+      - run:
+          name: install python3 with dnf
+          command: dnf install -y python3
       - run:
           name: install python2 devel package # for getting the "Python.h" header file
           command: dnf install -y python2-devel # fixes missing header on build time
@@ -110,6 +124,6 @@ workflows:
   version: 2.1
   start-containers:
     jobs:
-      # - job-0-debian
+      - job-0-debian
       - job-1-ubuntu
-      # - job-2-centos
+      - job-2-centos
