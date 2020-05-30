@@ -37,13 +37,15 @@ static struct PyModuleDef showdateModuleDef = {
     -1,
     showdateMethodDef}; //import the created methods into the py3 module
 //the init function for building with python3
-PyMODINIT_FUNC PyInit_showdate() //the init function when building with python3
+PyMODINIT_FUNC PyInit_showdate(void) //the init function when building with python3
 {
-    return PyModule_Create(&showdateModuleDef);
+    PyObject *m;
+    m = PyModule_Create(&showdateModuleDef);
+    return m;
 }
 #else
 // module initializer for python2
-PyMODINIT_FUNC initshowdate() //! ----> on Darwin the init function must be init<modulename> without any _ symbol between them
+PyMODINIT_FUNC initshowdate(void) //! ----> on Darwin the init function must be init<modulename> without any _ symbol between them
 {
     Py_InitModule3(moduleName, showdateMethodDef, moduleDoc_py2);
     //the init function for building wth python2
