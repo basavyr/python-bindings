@@ -38,6 +38,15 @@ The devel packages for python3 can be downloaded from here (for Centos8): [link]
 dnf install python3-devel -y
 ```
 
+### Ubuntu and Debian
+
+The commands for getting the python development package which comes with the "Python.h" header file. The header provides the user with the Python API into `C/C++`.
+
+```bash
+sudo apt-get install -y python-dev
+sudo apt-get install -y python3-dev
+```
+
 2. Issue with missing file or dir:
 
 ```bash
@@ -134,3 +143,6 @@ PyMODINIT_FUNC PyInit_showdate() //the init function when building with python3
 }
 ```
 
+## Warning for `Wstrict-prototypes
+
+Isse described in detail [here](https://stackoverflow.com/questions/8106258/cc1plus-warning-command-line-option-wstrict-prototypes-is-valid-for-ada-c-o)
