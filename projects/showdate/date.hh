@@ -43,7 +43,7 @@ PyMODINIT_FUNC PyInit_showdate() //the init function when building with python3
 }
 #else
 // module initializer for python2
-PyMODINIT_FUNC initshowdate() //! ----> on Darwin the init function must be init<modulename>
+PyMODINIT_FUNC initshowdate() //! ----> on Darwin the init function must be init<modulename> without any _ symbol between them
 {
     Py_InitModule3(moduleName, showdateMethodDef, moduleDoc_py2);
     //the init function for building wth python2

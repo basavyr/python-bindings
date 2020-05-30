@@ -70,3 +70,60 @@ Taken from [this](https://stackoverflow.com/questions/23286062/undefined-referen
 Some other potential fixes: 
 * [this so post](https://stackoverflow.com/questions/23286062/undefined-reference-to-symbol-znst8ios-base4initd1evglibcxx-3-4-building-op)1
 * [this so post](https://stackoverflow.com/questions/41833767/gcc-invalid-version-max-error-adding-symbols-bad-value)2
+
+
+## The `init` function on cross-platform module building - Python2
+
+There is a core difference between the Python Init function (at least when building with python2) between Darwin and Linux architectures.
+
+Namely, 
+
+In order to create the module, python2 interpreter on Darwin (OXS)) loads the init function with the following procedure:
+
+```C++
+// module initializer for python2
+PyMODINIT_FUNC initshowdate() //! ----> on Darwin the init function must be init<modulename>
+{
+    Py_InitModule3(moduleName, showdateMethodDef, moduleDoc_py2);
+    //the init function for building wth python2
+}
+```
+
+Another approach found on [this guide](https://stackoverflow.com/a/26464041/8295213), is to name the init function has `init_<modulename>`. (More details [here](https://stackoverflow.com/questions/24226001/importerror-dynamic-module-does-not-define-init-function-initfizzbuzz)).
+
+However, when attempt to build the same module on Linux platform (e.g. Centos), the build process will finish successfully, but when trying to execute a test script that uses the module, it fails due to *missing init function*:
+
+```bash
+[root@53fd76cc44ae lib.linux-x86_64-2.7]# python2 test.py 
+Traceback (most recent call last):
+  File "test.py", line 1, in <module>
+    import showdate as x
+ImportError: dynamic module does not define init function (initshowdate)
+```
+
+In order to fix that, a change in the naming of `init` function should be performed. More precisely:
+
+```c++
+// module initializer for python2
+PyMODINIT_FUNC initshowdate(void)
+{
+    Py_InitModule3(moduleName, showdateMethodDef, moduleDoc_py2);
+    //the init function for building wth python2
+}
+#endif
+```
+
+### Conclusion
+
+> Python2's Init function must always be named `init<modulename>`
+
+## The `init` function on cross-platform module building - Python3
+
+The init function for Python3's interpreter is loaded correctly if it is declared (on all platforms) in the following manner:
+
+```c++
+PyMODINIT_FUNC PyInit_showdate() //the init function when building with python3
+{
+    return PyModule_Create(&showdateModuleDef);
+}
+```
