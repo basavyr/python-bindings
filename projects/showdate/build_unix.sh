@@ -2,8 +2,9 @@ echo 'WE MADE IT INTO THE UNIX SCRIPT'
 echo '*********************************'
 echo 'Building the C++ extenstion for Python@2'
 echo '*********************************'
-# echo '*********************************'
-# # cp test.py build/lib.macosx-10.15-x86_64-2.7/test.py
+rm *.out
+rm -rf build/*
+/usr/bin/python2 setup.py build
 cd build/lib*
 cp ../../test.py .
 /usr/bin/python2 test.py
