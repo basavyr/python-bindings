@@ -39,6 +39,7 @@ static struct PyModuleDef showdateModuleDef = {
 //the init function for building with python3
 PyMODINIT_FUNC PyInit_showdate(void) //the init function when building with python3
 {
+    Py_Initialize();
     PyObject *m;
     m = PyModule_Create(&showdateModuleDef);
     return m;
