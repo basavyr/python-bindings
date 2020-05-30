@@ -1,39 +1,127 @@
 version: 2.1
 
 jobs:
+  #DEBIAN
   job-0-debian:
     docker:
       - image: "debian:latest"
     steps:
       - checkout
       - run:
-          name: Check platform
-          command: " uname -a"
+          name: Update and install sudo
+          command: "apt-get update && apt-get install -y sudo &&  rm -rf /var/lib/apt/lists/* "
       - run:
-          name: Check content of the repo
-          command: "ls -la"
+          name: install qqy
+          command: apt-get update -qqy && apt-get -qqy install
+      - run:
+          name: Install the required dev packages
+          command: "apt-get install -yqq g++ python"
+      - run:
+          name: Install python3 separately
+          command: "sudo apt-get install -yqq python3"
+      - run:
+          name: Install python devel
+          command: "apt-get install -yqq python-dev"
+      - run:
+          name: python devel3 package
+          command: "sudo apt-get install -yqq python3-dev"
+      - run:
+          name: installs distutils for building bindings with python3 #check docs for info on that
+          command: "apt-get install -yqq python3-distutils"
+      - run:
+          name: exports the cpath for fixing missing header
+          command: |
+            echo export CPATH=/usr/include/python3.8/ >> $BASH_ENV
+            source $BASH_ENV
+      - run:
+          name: checks $CPATH envar after source
+          command: echo $CPATH
+      - run:
+          name: builds and tests the return-string project
+          command: "cd projects/return-string/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh"
+      - run:
+          name: check what os we got and run platform dependent script
+          command: cd projects/showdate/ && chmod 775 check_os.sh && ./check_os.sh
+  # UBUNTU
   job-1-ubuntu:
     docker:
       - image: "ubuntu:latest"
     steps:
       - checkout
       - run:
-          name: Check platform
-          command: "uname -a"
+          name: "set env vars again"
+          command: |
+            echo 'debconf debconf/frontend select Noninteractive' debconf-set-selections
+            echo export DEBIAN_FRONTEND=noninteractive >> $BASH_ENV
+            source $BASH_ENV
       - run:
-          name: Check content of the repo
-          command: "ls -la"
+          name: Update and install sudo
+          command: "apt-get update && apt-get install -y sudo &&  rm -rf /var/lib/apt/lists/* "
+      - run:
+          name: install qqy
+          command: apt-get update -qqy && apt-get -qqy install
+      - run:
+          name: Install the required packages
+          command: "apt-get install -yqq g++ python"
+      - run:
+          name: Install the required packages
+          command: "sudo apt-get install -yqq python3" # install the package separately for proper installation
+      - run:
+          name: python devel package
+          command: "apt-get install -y python-dev"
+      - run:
+          name: python devel3 package
+          command: "sudo apt-get install -yqq python3-dev"
+      - run:
+          name: installs distutils for building bindings with python #check docs for info on that
+          command: "sudo apt-get install -yqq python3-distutils"
+      - run:
+          name: exports the cpath for fixing missing header
+          command: |
+            echo export CPATH=/usr/include/python3.8/ >> $BASH_ENV
+            source $BASH_ENV
+      - run:
+          name: checks $CPATH envar after source
+          command: echo $CPATH
+      - run:
+          name: builds and tests the return-string project
+          command: "cd projects/return-string/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh"
+      - run:
+          name: builds and tests the showdate project
+          command: "cd projects/showdate/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh"
+  # CENTOS
   job-2-centos:
     docker:
       - image: "centos:latest"
     steps:
       - checkout
       - run:
-          name: Check platform
-          command: "uname -a"
+          name: install updates
+          command: yum -y update && yum -y upgrade
       - run:
-          name: Check content of the repo
-          command: "ls -la"
+          name: install which  and tree package so we can check what is good
+          command: yum -y install which tree
+      - run:
+          name: install dev package
+          command: dnf groupinstall -y "Development Tools"
+      - run:
+          name: install python2 with dnf
+          command: dnf install -y python2
+      - run:
+          name: install python3 with dnf
+          command: dnf install -y python3
+      - run:
+          name: install python2 devel package # for getting the "Python.h" header file
+          command: dnf install -y python2-devel # fixes missing header on build time
+      - run:
+          name: install python3 devel package # for getting the "Python.h" header file when building with python3
+          command: dnf install -y python3-devel # fixes missing header on build time
+      - run:
+          name: builds and tests the return-string project
+          command: cd projects/return-string/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh
+      - run:
+          name: builds and tests the showdate project
+          command: cd projects/showdate/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh
 
 workflows:
   version: 2.1

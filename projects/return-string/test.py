@@ -11,5 +11,14 @@ def run_module(user):
     print(x.showstring(user))
 
 
+user = open('../../os', 'r').read().split('\n')[0]
+
+platform = ' '
+
+if(user == 'Darwin'):
+    platform = 'Darwin'
+else:
+    platform = 'Linux'
+
 y = "Darwin"
-run_module(y)
+run_module(platform)

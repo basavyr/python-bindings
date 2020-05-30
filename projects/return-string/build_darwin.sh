@@ -1,3 +1,4 @@
+echo 'WE MADE IT INTO THE DARWIN BUILD SCRIPT'
 echo '*********************************'
 echo 'Building the C++ extenstion for Python@2'
 echo '*********************************'
@@ -17,7 +18,7 @@ echo 'Building the C++ extenstion for Python@3'
 echo '*********************************'
 # don't clear the build directory after the first build part
 cd ..
-cd ..  # go back in the main sub-project after buid on v2
+cd .. # go back in the main sub-project after buid on v2
 /usr/bin/python3 setup.py build
 echo '*********************************'
 echo 'Testing the C++ extenstion for Python@3'

@@ -29,7 +29,10 @@ static struct PyModuleDef showstringModuleDef = {
 //the init function for building with python3
 PyMODINIT_FUNC PyInit_showstring(void)
 {
-    return PyModule_Create(&showstringModuleDef);
+    Py_Initialize();
+    PyObject *m;
+    m = PyModule_Create(&showstringModuleDef);
+    return m;
 }
 #else
 // module initializer for python2

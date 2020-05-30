@@ -25,4 +25,17 @@ An individual project has some core parts which are consistent across the entire
   1. It checks if there are previous built extensions into the main tree, and if true, deletes them.
   2. Starts a build pipeline for **Python2** and proceeds to `cd` into the location of the obtained `.so` library.
   3. Once inside the corresponding shared library's source directory, it copies the python test file `test.py` next to the library, and finally it executed the python script.
-  4. Another similar pipeline is started, but for **Python3**, following the same procedures. 
+  4. Another similar pipeline is started, but for **Python3**, following the same procedures.
+
+**Update** - introduced a new script that detects the platform on which the project is built&executed.
+TO-DO
+
+- [ ] documentation for `check-os.sh`
+
+## Resources
+
+1. [Extending Python with C or C++](https://docs.python.org/2/extending/extending.html#a-simple-example) - Useful guide on configuring an extension with Python2.
+2. [Python Module Objects](https://docs.python.org/3/c-api/module.html#initializing-modules)
+3. [Building C and C++ Extensions](https://docs.python.org/3/extending/building.html#c.PyInit_modulename)
+4. [C extension not working in Python 3.7 says ImportError: dynamic module does not define module export function (PyInit_loop)](https://stackoverflow.com/questions/57214046/c-extension-not-working-in-python-3-7-says-importerror-dynamic-module-does-not)  - discussion on how to declare an init function for python3
+5. [PyInit_modulename](https://docs.python.org/3/extending/building.html#c.PyInit_modulename) - Official documentation on building the init functions.
