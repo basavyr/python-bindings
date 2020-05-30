@@ -52,11 +52,11 @@ jobs:
       - run:
           name: installs distutils for building bindings with python #check docs for info on that
           command: "apt-get install -yqq python3-distutils"
-      - run:
-          name: exports the cpath for fixing missing header
-          command: |
-            echo export CPATH=/usr/include/python2.7/:/usr/include/python3.8/:/usr/include/python3.7/ >>$BASH_ENV
-            source $BASH_ENV
+      # - run:
+      #     name: exports the cpath for fixing missing header
+      #     command: |
+      #       echo export CPATH=/usr/include/python2.7/:/usr/include/python3.8/:/usr/include/python3.7/ >>$BASH_ENV
+      #       source $BASH_ENV
       - run:
           name: builds and tests the return-string project
           command: "cd projects/return-string/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh"
