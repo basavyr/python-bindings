@@ -19,7 +19,7 @@ cd ../../ # go back in the main sub-project after buid on v2
 echo '*********************************'
 echo 'Testing the C++ extenstion for Python@3'
 echo '*********************************'
-cd build/lib.linux-x86_64-3.7
+cd build/lib.linux-x86_64-3.6
 cp ../../test.py .
 /usr/bin/python3 test.py
 # # cp test.py build/lib.macosx-10.14-x86_64-3.7/test.py

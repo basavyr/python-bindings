@@ -35,7 +35,7 @@ The devel packages can be found here (for python2): https://centos.pkgs.org/8/ok
 The devel packages for python3 can be downloaded from here (for Centos8): [link](https://centos.pkgs.org/8/centos-appstream-x86_64/python36-devel-3.6.8-2.module_el8.1.0+245+c39af44f.x86_64.rpm.html)
 
 ```bash
-dnf install python36-devel
+dnf install python3-devel -y
 ```
 
 2. Issue with missing file or dir:

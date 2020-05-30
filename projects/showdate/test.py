@@ -17,7 +17,7 @@ def run_module(string1, string2):
 
 # ------> reads the os file and checks what platform the system is on
 # solution from here https://stackoverflow.com/a/3277511/8295213
-# os = open('os', 'r',).read().split('\n')[0]
+os = open('../../os', 'r',).read().split('\n')[0]
 
 is_OSX='This is Darwin'
 is_Linux='This is Linux'
@@ -25,7 +25,7 @@ is_Linux='This is Linux'
 prefix='Hey'
 user='Darwin'
 
-# user=' '
+platform=' '
 
 # if(os== 'Darwin'):
 #     print(is_OSX)
