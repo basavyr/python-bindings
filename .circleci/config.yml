@@ -75,13 +75,13 @@ jobs:
           command: dnf install -y python2-devel # fixes missing header on build time
       - run:
           name: install python3 devel package # for getting the "Python.h" header file when building with python3
-          command: dnf install -y python3-devel  # fixes missing header on build time
+          command: dnf install -y python3-devel # fixes missing header on build time
       - run:
-          name: check what os we got and run platform dependent script
+          name: builds and tests the return-string project
+          command: cd projects/return-string/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh
+      - run:
+          name: builds and tests the showdate project
           command: cd projects/showdate/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh
-      - run:
-          name: check project structure
-          command: tree -h
       # - run:
       #     name: clean up the mess
       #     command: cd projects/showdate/ && chmod 775 wipebuild.sh && ./wipebuild.sh && ls -la

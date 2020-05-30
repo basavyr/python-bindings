@@ -1,11 +1,9 @@
-echo '*********************************'
-echo 'CLEANING UP THE MESS'
-echo '*********************************'
-rm *.out
-rm -rf build/*
+echo 'WE MADE IT INTO THE DARWIN BUILD SCRIPT'
 echo '*********************************'
 echo 'Building the C++ extenstion for Python@2'
 echo '*********************************'
+rm *.out
+rm -rf build/*
 /usr/bin/python2 setup.py build
 echo '*********************************'
 echo 'Testing the C++ extenstion for Python@2'
