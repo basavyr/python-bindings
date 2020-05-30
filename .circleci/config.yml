@@ -45,7 +45,10 @@ jobs:
           command: apt-get update -qqy && apt-get -qqy install
       - run:
           name: Install the required packages
-          command: "apt-get install -yqq g++ python python3"
+          command: "apt-get install -yqq g++ python"
+      - run:
+          name: Install the required packages
+          command: "apt-get install -yqq python3"
       - run:
           name: python devel package
           command: "apt-get install -y python-dev"
