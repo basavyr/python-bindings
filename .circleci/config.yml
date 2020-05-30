@@ -21,7 +21,7 @@ jobs:
           command: "apt-get install -yqq python-dev"
       - run:
           name: installs distutils for building bindings with python3 #check docs for info on that
-          command: "apt-get install python3-distutils"
+          command: "apt-get install -yqq python3-distutils"
       - run:
           name: check what os we got and run platform dependent script
           command: cd projects/showdate/ && chmod 775 check_os.sh && ./check_os.sh
@@ -51,7 +51,7 @@ jobs:
           command: "apt-get install -y python-dev"
       - run:
           name: installs distutils for building bindings with python3 #check docs for info on that
-          command: "apt-get install python3-distutils"
+          command: "apt-get install -yqq python3-distutils"
       - run:
           name: builds and tests the return-string project
           command: "cd projects/return-string/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh"
