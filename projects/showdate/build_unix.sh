@@ -5,7 +5,7 @@ echo '*********************************'
 rm *.out
 rm -rf build/*
 /usr/bin/python2 setup.py build
-cd build/lib.linux-x86_64-2.7 # the standard build folder for Linux on 2.7
+cd build/lib.linux-x86_64-2.* # the standard build folder for Linux on 2.7
 cp ../../test.py .
 /usr/bin/python2 test.py
 # ld showdate.so  # this doesn't work on the bare centos image
@@ -19,7 +19,7 @@ cd ../../ # go back in the main sub-project after buid on v2
 echo '*********************************'
 echo 'Testing the C++ extenstion for Python@3'
 echo '*********************************'
-cd build/lib.linux-x86_64-3.6
+cd build/lib.linux-x86_64-3.* # the standard build folder for Linux on 2.7
 cp ../../test.py .
 /usr/bin/python3 test.py
 # # cp test.py build/lib.macosx-10.14-x86_64-3.7/test.py
