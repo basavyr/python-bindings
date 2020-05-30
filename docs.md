@@ -48,7 +48,7 @@ sudo apt-get install -y python3-dev
 ```
 
 2. Issue with missing file or dir:
-
+3. 
 ```bash
 "gcc: error: /usr/lib/rpm/redhat/redhat-hardened-cc1: No such file or directory"
 ```
@@ -59,7 +59,24 @@ sudo apt-get install -y python3-dev
 sudo dnf install redhat-rpm-config
 ```
 
-2. Issue with building the python script:
+3. Ubuntu and Debian fail to build the project on Python3
+
+```bash
+Traceback (most recent call last):
+  File "setup.py", line 1, in <module>
+    from distutils.core import setup, Extension
+ModuleNotFoundError: No module named 'distutils.core'
+```
+
+Apparently, this is an issue related to a [missing package](https://github.com/kyuupichan/electrumx/issues/464#issuecomment-399350660).
+
+```bash
+apt-get install python3-distutils
+```
+
+> Installing the devel packages on the official `Ubuntu:latest` and `Debian:lates` is not enough: **python3 needs the distutils**.
+
+4. Issue with building the python script:
 
 ```bash
 Compile error: “g++: error trying to exec 'cc1plus': execvp: No such file or directory”
@@ -69,7 +86,7 @@ Compile error: “g++: error trying to exec 'cc1plus': execvp: No such file or d
 
 On the same issue: [this SO post](https://stackoverflow.com/questions/11912878/gcc-error-gcc-error-trying-to-exec-cc1-execvp-no-such-file-or-directory).
 
-3. Issue with running the python test file after successful building with python2
+5. Issue with running the python test file after successful building with python2
 
 When attempting to run the python test file from the location where the shared library was installed, the following error occurred: 
 ```bash
