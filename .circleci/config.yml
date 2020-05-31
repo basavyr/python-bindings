@@ -10,15 +10,15 @@ jobs:
       - run:
           name: Update and install sudo
           command: "apt-get update && apt-get install -y sudo   &&  rm -rf /var/lib/apt/lists/* "
-#       - run:
-#         name: install qqy
-#         command: "apt-get update -qqy && apt-get -qqy install"
-#       - run:
-#         name: Install the required dev packages
-#         command: "apt-get install -yqq g++ python"
-#       - run:
-#         name: Install python3 separately
-#         command: "sudo apt-get install -yqq python3"
+      - run:
+          name: install qqy
+          command: "apt-get update -qqy && apt-get -qqy install"
+      - run:
+          name: Install the required dev packages
+          command: "apt-get install -yqq g++ python"
+      - run:
+          name: Install python3 separately
+          command: "sudo apt-get install -yqq python3"
 #       - run:
 #           name: Install python devel
 #           command: "apt-get install -yqq python-dev"
