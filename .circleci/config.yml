@@ -1,8 +1,9 @@
 version: 2.1
 
 jobs:
+    
 #DEBIAN
- job-0-debian:
+  job-0-debian:
     docker:
       - image: "debian:latest"
     steps:
@@ -36,15 +37,6 @@ jobs:
       - run:
           name: checks $CPATH envar after source
           command: echo $CPATH
-      #   - run:
-      #       name: builds and tests the return-string project
-      #       command: "cd projects/return-string/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh"
-      #   - run:
-      #       name: check what os we got and run platform dependent script
-      #       command: cd projects/showdate/ && chmod 775 check_os.sh && ./check_os.sh
-      #   - run:
-      #       name: builds and tests array_generator project
-      #       command: "cd projects/array-create/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh"
       - run:
           name: runs the array-generator PY2
           command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
@@ -55,7 +47,7 @@ jobs:
           name: runs the array-generator PY3
           command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
 # UBUNTU
- job-1-ubuntu:
+  job-1-ubuntu:
     docker:
       - image: "ubuntu:latest"
     steps:
@@ -92,15 +84,6 @@ jobs:
           command: |
             echo export CPATH=/usr/include/python3.8/ >> $BASH_ENV
             source $BASH_ENV
-      #   - run:
-      #       name: checks $CPATH envar after source
-      #       command: echo $CPATH
-      #   - run:
-      #       name: builds and tests the return-string project
-      #       command: "cd projects/return-string/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh"
-      #   - run:
-      #       name: builds and tests the showdate project
-      #       command: "cd projects/showdate/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh"
       - run:
           name: runs the array-generator PY2
           command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
@@ -111,7 +94,7 @@ jobs:
           name: runs the array-generator PY3
           command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
 # CENTOS
- job-2-centos:
+  job-2-centos:
     docker:
       - image: "centos:latest"
     steps:
@@ -137,15 +120,6 @@ jobs:
       - run:
           name: install python3 devel package # for getting the "Python.h" header file when building with python3
           command: dnf install -y python3-devel # fixes missing header on build time
-      #   - run:
-      #       name: builds and tests the return-string project
-      #       command: cd projects/return-string/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh
-      #   - run:
-      #       name: builds and tests the showdate project
-      #       command: cd projects/showdate/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh
-      #   - run:
-      #       name: builds and tests array_generator project
-      #       command: "cd projects/array-create/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh"
       - run:
           name: runs the array-generator PY2
           command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
