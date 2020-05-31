@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   #DEBIAN
-    job-0-debian: 
+job-0-debian: 
     docker:
       - image: "debian:latest"
     steps:
