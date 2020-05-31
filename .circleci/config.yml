@@ -36,15 +36,15 @@ jobs:
       - run:
           name: checks $CPATH envar after source
           command: echo '$CPATH'
-#       - run:
-#         name: runs the array-generator PY2
-#         command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
-#       - run:
-#         name: cleans the content
-#         command: "cd projects/array-create/ && chmod 775 wipebuild.sh&&./wipebuild.sh"
-#       - run:
-#         name: runs the array-generator PY3
-#         command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
+      - run:
+          name: runs the array-generator PY2
+          command: "cd projects/array-create/ && python2 setup py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
+      - run:
+          name: cleans the content
+          command: "cd projects/array-create/ && chmod 775 wipebuild.sh&&./wipebuild.sh"
+      - run:
+          name: runs the array-generator PY3
+          command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
 #   # UBUNTU
 #     job-1-ubuntu:
 #     docker:
