@@ -12,7 +12,7 @@ std::vector<T> generate_array(size_t arrsize, const T &init)
     std::vector<T> retarray;
     for (size_t id = 0; id < arrsize; ++id)
     {
-        retarray.emplace_back(math_function<T>(init+id));
+        retarray.emplace_back(math_function<T>(init + id));
     }
     return retarray;
 }
@@ -36,5 +36,29 @@ PyObject *return_array(PyObject *self, PyObject *args)
     PyObject *result;
     result = Py_BuildValue("O", v);
     Py_DECREF(v);
+    return result;
+}
+
+PyObject *select_array(PyObject *self, PyObject *args)
+{
+    Py_ssize_t size;
+    int init;
+    Py_ssize_t left_id, right_id;
+    if (!PyArg_ParseTuple(args, "ninn", &size, &init, &left_id, &right_id))
+        return NULL;
+    Py_ssize_t arr_dim = right_id - left_id;
+    PyObject *py_array = PyList_New(arr_dim);
+    auto cxx_array = generate_array<long>(size, init);
+    Py_ssize_t local_id = 0;
+    for (auto id = left_id; id < right_id; ++id)
+    {
+        PyObject *element = PyLong_FromLong(cxx_array.at(id));
+        PyList_SetItem(py_array, local_id, element);
+        local_id = local_id + 1;
+    }
+    PyObject *result;
+    result = Py_BuildValue("O", py_array);
+    Py_DECREF(py_array);
+    cxx_array.clear();
     return result;
 }
