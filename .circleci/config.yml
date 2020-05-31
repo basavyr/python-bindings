@@ -38,7 +38,7 @@ jobs:
           command: echo '$CPATH'
       - run:
           name: runs the array-generator PY2
-          command: "cd projects/array-create/ && python2 setup py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
+          command: "cd projects/array-create/ && python2 setup,py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
       - run:
           name: cleans the content
           command: "cd projects/array-create/ && chmod 775 wipebuild.sh&&./wipebuild.sh"
