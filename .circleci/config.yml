@@ -42,9 +42,15 @@ jobs:
       #   - run:
       #       name: check what os we got and run platform dependent script
       #       command: cd projects/showdate/ && chmod 775 check_os.sh && ./check_os.sh
+      #   - run:
+      #       name: builds and tests array_generator project
+      #       command: "cd projects/array-create/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh"
       - run:
-          name: builds and tests array_generator project
-          command: "cd projects/array-create/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh"
+          name: runs the array-generator PY2
+          command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
+      - run:
+          name: runs the array-generator PY3
+          command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python2 test.py"
   # UBUNTU
   job-1-ubuntu:
     docker:
@@ -83,9 +89,9 @@ jobs:
           command: |
             echo export CPATH=/usr/include/python3.8/ >> $BASH_ENV
             source $BASH_ENV
-      - run:
-          name: checks $CPATH envar after source
-          command: echo $CPATH
+      #   - run:
+      #       name: checks $CPATH envar after source
+      #       command: echo $CPATH
       #   - run:
       #       name: builds and tests the return-string project
       #       command: "cd projects/return-string/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh"
@@ -93,8 +99,11 @@ jobs:
       #       name: builds and tests the showdate project
       #       command: "cd projects/showdate/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh"
       - run:
-          name: builds and tests array_generator project
-          command: "cd projects/array-create/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh"
+          name: runs the array-generator PY2
+          command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
+      - run:
+          name: runs the array-generator PY3
+          command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python2 test.py"
   # CENTOS
   job-2-centos:
     docker:
@@ -128,9 +137,15 @@ jobs:
       #   - run:
       #       name: builds and tests the showdate project
       #       command: cd projects/showdate/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh
+      #   - run:
+      #       name: builds and tests array_generator project
+      #       command: "cd projects/array-create/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh"
       - run:
-          name: builds and tests array_generator project
-          command: "cd projects/array-create/ && chmod 775 check_os.sh && chmod 775 wipebuild.sh && ./check_os.sh"
+          name: runs the array-generator PY2
+          command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
+      - run:
+          name: runs the array-generator PY3
+          command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python2 test.py"
 
 workflows:
   version: 2.1

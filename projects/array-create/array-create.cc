@@ -12,7 +12,7 @@ std::vector<T> generate_array(size_t arrsize, const T &init)
     std::vector<T> retarray;
     for (size_t id = 0; id < arrsize; ++id)
     {
-        retarray.emplace_back(math_function<T>(init));
+        retarray.emplace_back(math_function<T>(init+id));
     }
     return retarray;
 }
