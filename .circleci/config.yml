@@ -31,11 +31,11 @@ jobs:
       - run:
           name: exports the cpath for fixing missing header
           command: |
-          echo export CPATH=/usr/include/python3.8/ >> $BASH_ENV
+          echo 'export CPATH=/usr/include/python3.8/'' >> $BASH_ENV
           source $BASH_ENV
       - run:
           name: checks $CPATH envar after source
-          command: echo $CPATH
+          command: echo '$CPATH'
 #       - run:
 #         name: runs the array-generator PY2
 #         command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
