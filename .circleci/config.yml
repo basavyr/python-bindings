@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   #DEBIAN
-  job-0-debian:
+    job-0-debian: 
     docker:
       - image: "debian:latest"
     steps:
@@ -46,7 +46,7 @@ jobs:
         name: runs the array-generator PY3
         command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
   # UBUNTU
-  job-1-ubuntu:
+    job-1-ubuntu:
     docker:
       - image: "ubuntu:latest"
     steps:
@@ -93,7 +93,7 @@ jobs:
           name: runs the array-generator PY3
           command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
   # CENTOS
-  job-2-centos:
+    job-2-centos:
     docker:
       - image: "centos:latest"
     steps:
