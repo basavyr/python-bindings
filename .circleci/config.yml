@@ -16,33 +16,33 @@ jobs:
       - run:
         name: Install the required dev packages
         command: "apt-get install -yqq g++ python"
-     - run:
+      - run:
         name: Install python3 separately
         command: "sudo apt-get install -yqq python3"
-     - run:
-         name: Install python devel
-         command: "apt-get install -yqq python-dev"
-     - run:
+      - run:
+          name: Install python devel
+          command: "apt-get install -yqq python-dev"
+      - run:
         name: python devel3 package
         command: "sudo apt-get install -yqq python3-dev"
-     - run:
+      - run:
         name: installs distutils for building bindingswith python3 #check docs for info on that
         command: "apt-get install -yqq python3-distutils"
-     - run:
+      - run:
         name: exports the cpath for fixing missing header
         command: |
           echo export CPATH=/usr/include/python3.8/ >> $BASH_ENV
           source $BASH_ENV
-     - run:
+      - run:
         name: checks $CPATH envar after source
         command: echo $CPATH
-     - run:
+      - run:
         name: runs the array-generator PY2
         command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
-     - run:
+      - run:
         name: cleans the content
         command: "cd projects/array-create/ && chmod 775 wipebuild.sh&&./wipebuild.sh"
-     - run:
+      - run:
         name: runs the array-generator PY3
         command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
   # UBUNTU
