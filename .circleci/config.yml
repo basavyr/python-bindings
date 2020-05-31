@@ -53,7 +53,7 @@ jobs:
           command: "cd projects/array-create/ && chmod 775 wipebuild.sh&&./wipebuild.sh"
       - run:
           name: runs the array-generator PY3
-          command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python2 test.py"
+          command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
   # UBUNTU
   job-1-ubuntu:
     docker:
@@ -109,7 +109,7 @@ jobs:
           command: "cd projects/array-create/ && chmod 775 wipebuild.sh&&./wipebuild.sh"
       - run:
           name: runs the array-generator PY3
-          command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python2 test.py"
+          command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
   # CENTOS
   job-2-centos:
     docker:
@@ -154,7 +154,7 @@ jobs:
           command: "cd projects/array-create/ && chmod 775 wipebuild.sh&&./wipebuild.sh"
       - run:
           name: runs the array-generator PY3
-          command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python2 test.py"
+          command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
 
 workflows:
   version: 2.1
