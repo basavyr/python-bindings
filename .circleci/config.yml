@@ -31,7 +31,7 @@ jobs:
       - run:
           name: exports the cpath for fixing missing header
           command: |
-            echo 'export CPATH=/usr/include/python3.8/'' >> $BASH_ENV
+            echo 'export CPATH=/usr/include/python3.8/' >> $BASH_ENV
             source $BASH_ENV
       - run:
           name: checks $CPATH envar after source
