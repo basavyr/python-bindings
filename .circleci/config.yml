@@ -1,52 +1,51 @@
 version: 2.1
 
 jobs:
-    
-#DEBIAN
+  #DEBIAN
   job-0-debian:
     docker:
-      - image: "debian:latest"
+        - image: "debian:latest"
     steps:
-      - checkout
+       - checkout
+       - run:
+        name: Update and install sudo
+        command: "apt-get update && apt-get install -y sudo &&  rm -rf /var/lib/apt/lists/* "
       - run:
-          name: Update and install sudo
-          command: "apt-get update && apt-get install -y sudo &&  rm -rf /var/lib/apt/lists/* "
+        name: install qqy
+        command: apt-get update -qqy && apt-get -qqy install
       - run:
-          name: install qqy
-          command: apt-get update -qqy && apt-get -qqy install
-      - run:
-          name: Install the required dev packages
-          command: "apt-get install -yqq g++ python"
-      - run:
-          name: Install python3 separately
-          command: "sudo apt-get install -yqq python3"
-      - run:
-          name: Install python devel
-          command: "apt-get install -yqq python-dev"
-      - run:
-          name: python devel3 package
-          command: "sudo apt-get install -yqq python3-dev"
-      - run:
-          name: installs distutils for building bindings with python3 #check docs for info on that
-          command: "apt-get install -yqq python3-distutils"
-      - run:
-          name: exports the cpath for fixing missing header
-          command: |
-            echo export CPATH=/usr/include/python3.8/ >> $BASH_ENV
-            source $BASH_ENV
-      - run:
-          name: checks $CPATH envar after source
-          command: echo $CPATH
-      - run:
-          name: runs the array-generator PY2
-          command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
+        name: Install the required dev packages
+        command: "apt-get install -yqq g++ python"
      - run:
-          name: cleans the content
-          command: "cd projects/array-create/ && chmod 775 wipebuild.sh&&./wipebuild.sh"
-      - run:
-          name: runs the array-generator PY3
-          command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
-# UBUNTU
+        name: Install python3 separately
+        command: "sudo apt-get install -yqq python3"
+     - run:
+        name: Install python devel
+        command: "apt-get install -yqq python-dev"
+     - run:
+        name: python devel3 package
+        command: "sudo apt-get install -yqq python3-dev"
+     - run:
+        name: installs distutils for building bindings with python3 #check docs for info on that
+        command: "apt-get install -yqq python3-distutils"
+     - run:
+        name: exports the cpath for fixing missing header
+        command: |
+          echo export CPATH=/usr/include/python3.8/ >> $BASH_ENV
+          source $BASH_ENV
+     - run:
+        name: checks $CPATH envar after source
+        command: echo $CPATH
+     - run:
+        name: runs the array-generator PY2
+        command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
+     - run:
+        name: cleans the content
+        command: "cd projects/array-create/ && chmod 775 wipebuild.sh&&./wipebuild.sh"
+     - run:
+        name: runs the array-generator PY3
+        command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
+  # UBUNTU
   job-1-ubuntu:
     docker:
       - image: "ubuntu:latest"
@@ -93,7 +92,7 @@ jobs:
       - run:
           name: runs the array-generator PY3
           command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
-# CENTOS
+  # CENTOS
   job-2-centos:
     docker:
       - image: "centos:latest"
