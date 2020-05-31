@@ -10,9 +10,10 @@ jobs:
        - run:
             name: Update and install sudo
             command: "apt-get update && apt-get install -y sudo &&  rm -rf /var/lib/apt/lists/* "
+
       - run:
             name: install qqy
-            command: apt-get update -qqy && apt-get -qqy install
+            command: "apt-get update -qqy && apt-get -qqy install"
       - run:
             name: Install the required dev packages
             command: "apt-get install -yqq g++ python"
