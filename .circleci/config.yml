@@ -146,8 +146,9 @@ jobs:
       - run:
           name: check if archive is there
           command: cd /tmp/ && ls
+      - working
       - store_artifacts:
-          path: /tmp/build_*
+          path: /tmp/build_tarball.tar.gz
     #   - run:
     #       name: runs the array-generator PY2
     #       command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
