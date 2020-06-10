@@ -15,7 +15,8 @@
         "stdexcept": "cpp",
         "string_view": "cpp",
         "system_error": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "future": "cpp"
     },
     "python.pythonPath": "/usr/local/bin/python3"
 }
