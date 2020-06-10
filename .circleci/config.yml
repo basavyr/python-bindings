@@ -146,7 +146,6 @@ jobs:
       - run:
           name: check if archive is there
           command: cd /tmp/ && ls
-      - working
       - store_artifacts:
           path: /tmp/build_tarball.tar.gz
     #   - run:
