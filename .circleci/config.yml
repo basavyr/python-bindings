@@ -223,6 +223,6 @@ workflows:
   version: 2.1
   start-containers:
     jobs:
-        - job-0-debian
-        - job-1-ubuntu
+      - job-0-debian
+      - job-1-ubuntu
       - job-2-centos
