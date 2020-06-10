@@ -39,30 +39,30 @@ jobs:
       - run:
           name: installs the certificates
           command: apt-get install -y ca-certificates #this allows image to have a valid certificate for being able to upload artifacts to an external server
-    #   - run:
-    #       name: create test artifact
-    #       command: touch ARTIFACT.ART  &&uname >> ARTIFACT.ART && cp ARTIFACT.ART /tmp/
-    #   - store_artifacts:
-    #       path: /tmp/ARTIFACT.ART
-    #       destination: debian-ARTIFACT.ART
-    #   - run:
-    #       name: runs the array-generator PY2
-    #       command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
-    #   - run:
-    #       name: cleans the content
-    #       command: "cd projects/array-create/ && chmod 775 wipebuild.sh&&./wipebuild.sh"
-    #   - run:
-    #       name: runs the array-generator PY3
-    #       command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
-    #   - run:
-    #       name: runs the async-project PY2
-    #       command: "cd projects/async-treahds/ && python2 setup.py build && cd build &&cd lib* && cp ../../test.py . && python2 test.py"
-    #   - run:
-    #       name: cleans the content
-    #       command: "cd projects/async-treahds/ && chmod 775 wipebuild.sh&&./wipebuild.sh"
-    #   - run:
-    #       name: runs the async-project PY3
-    #       command: "cd projects/async-treahds/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
+      #   - run:
+      #       name: create test artifact
+      #       command: touch ARTIFACT.ART  &&uname >> ARTIFACT.ART && cp ARTIFACT.ART /tmp/
+      #   - store_artifacts:
+      #       path: /tmp/ARTIFACT.ART
+      #       destination: debian-ARTIFACT.ART
+      #   - run:
+      #       name: runs the array-generator PY2
+      #       command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
+      #   - run:
+      #       name: cleans the content
+      #       command: "cd projects/array-create/ && chmod 775 wipebuild.sh&&./wipebuild.sh"
+      #   - run:
+      #       name: runs the array-generator PY3
+      #       command: "cd projects/array-create/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
+      #   - run:
+      #       name: runs the async-project PY2
+      #       command: "cd projects/async-treahds/ && python2 setup.py build && cd build &&cd lib* && cp ../../test.py . && python2 test.py"
+      #   - run:
+      #       name: cleans the content
+      #       command: "cd projects/async-treahds/ && chmod 775 wipebuild.sh&&./wipebuild.sh"
+      #   - run:
+      #       name: runs the async-project PY3
+      #       command: "cd projects/async-treahds/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
       - run:
           name: builds and runs the twister module PY2
           command: cd projects/random-twister/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py
@@ -122,6 +122,9 @@ jobs:
           command: |
             echo export CPATH=/usr/include/python3.8/ >> $BASH_ENV
             source $BASH_ENV
+      - run:
+          name: installs the certificates
+          command: apt-get install -y ca-certificates #this allows image to have a valid certificate
       - run:
           name: runs the array-generator PY2
           command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
@@ -233,5 +236,5 @@ workflows:
   start-containers:
     jobs:
       - job-0-debian
-    #   - job-1-ubuntu
-    #   - job-2-centos
+      - job-1-ubuntu
+      - job-2-centos
