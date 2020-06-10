@@ -154,8 +154,10 @@ jobs:
           command: cd projects/random-twister/ && tar -zcvf build-py3_tarball.tar.gz build && ls && cp build-py3_tarball.tar.gz /tmp/
       - store_artifacts:
           path: /tmp/build-py2_tarball.tar.gz
+          destination: centos
       - store_artifacts:
           path: /tmp/build-py3_tarball.tar.gz
+          destination: centos
     #   - run:
     #       name: runs the array-generator PY2
     #       command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
