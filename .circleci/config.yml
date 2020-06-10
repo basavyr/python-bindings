@@ -142,12 +142,20 @@ jobs:
           command: cd projects/random-twister/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py
       - run:
           name: create build archive for random twister module PY2
-          command: cd projects/random-twister/ && tar -zcvf build_tarball.tar.gz build && ls && cp build_tarball.tar.gz /tmp/
+          command: cd projects/random-twister/ && tar -zcvf build-py2_tarball.tar.gz build && ls && cp build-py2_tarball.tar.gzs /tmp/
       - run:
-          name: check if archive is there
-          command: cd /tmp/ && ls
+          name: builds and runs the twister module PY3
+          command: cd projects/random-twister/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py
+      - run:
+          name: cleans the previous build
+          command: cd projects/random-twister/ && rm -rf build/*
+      - run:
+          name: create build archive for random twister module PY3
+          command: cd projects/random-twister/ && tar -zcvf build-py3_tarball.tar.gz build && ls && cp build-py3_tarball.tar.gz /tmp/
       - store_artifacts:
-          path: /tmp/build_tarball.tar.gz
+          path: /tmp/build-py2_tarball.tar.gz
+      - store_artifacts:
+          path: /tmp/build-py3_tarball.tar.gz
     #   - run:
     #       name: runs the array-generator PY2
     #       command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
