@@ -137,6 +137,12 @@ jobs:
       - run:
           name: install python3 devel package # for getting the "Python.h" header file when building with python3
           command: dnf install -y python3-devel # fixes missing header on build time
+      - run:
+          name: builds and runs the twister module PY2
+          command: cd projects/random-twister/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
+      - run:
+          name: create build archive for random twister module PY2
+          command: cd projects/random_twister/ && tar -xcvf build_tarball.tar.gz build && ls
     #   - run:
     #       name: runs the array-generator PY2
     #       command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
@@ -160,6 +166,6 @@ workflows:
   version: 2.1
   start-containers:
     jobs:
-    #   - job-0-debian
-    #   - job-1-ubuntu
+      #   - job-0-debian
+      #   - job-1-ubuntu
       - job-2-centos
