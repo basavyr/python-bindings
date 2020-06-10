@@ -139,10 +139,15 @@ jobs:
           command: dnf install -y python3-devel # fixes missing header on build time
       - run:
           name: builds and runs the twister module PY2
-          command: cd projects/random-twister/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
+          command: cd projects/random-twister/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py
       - run:
           name: create build archive for random twister module PY2
-          command: cd projects/random_twister/ && tar -xcvf build_tarball.tar.gz build && ls
+          command: cd projects/random_twister/ && tar -xcvf build_tarball.tar.gz build && ls && cp build_tarball.tar.gz /tmp/
+      - run:
+          name: check if archive is there
+          command: cd /tmp/ && ls
+      - store_artifacts:
+          path: /tmp/build_*
     #   - run:
     #       name: runs the array-generator PY2
     #       command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
