@@ -54,7 +54,7 @@ jobs:
       - run:
           name: runs the async-project PY3
           command: "cd projects/async-treahds/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
-               - run:
+      - run:
           name: builds and runs the twister module PY2
           command: cd projects/random-twister/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py
       - run:
@@ -131,7 +131,7 @@ jobs:
       - run:
           name: runs the async-project PY3
           command: "cd projects/async-treahds/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
-               - run:
+      - run:
           name: builds and runs the twister module PY2
           command: cd projects/random-twister/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py
       - run:
