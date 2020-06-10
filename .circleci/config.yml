@@ -38,13 +38,13 @@ jobs:
           command: echo '$CPATH'
       - run:
           name: installs the certificates
-          command: apt-get install -y ca-certificates
-      - run:
-          name: create test artifact
-          command: touch ARTIFACT.ART  &&uname >> ARTIFACT.ART && cp ARTIFACT.ART /tmp/
-      - store_artifacts:
-          path: /tmp/ARTIFACT.ART
-          destination: debian-ARTIFACT.ART
+          command: apt-get install -y ca-certificates #this allows image to have a valid certificate for being able to upload artifacts to an external server
+    #   - run:
+    #       name: create test artifact
+    #       command: touch ARTIFACT.ART  &&uname >> ARTIFACT.ART && cp ARTIFACT.ART /tmp/
+    #   - store_artifacts:
+    #       path: /tmp/ARTIFACT.ART
+    #       destination: debian-ARTIFACT.ART
     #   - run:
     #       name: runs the array-generator PY2
     #       command: "cd projects/array-create/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py"
@@ -63,27 +63,27 @@ jobs:
     #   - run:
     #       name: runs the async-project PY3
     #       command: "cd projects/async-treahds/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
-    #   - run:
-    #       name: builds and runs the twister module PY2
-    #       command: cd projects/random-twister/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py
-    #   - run:
-    #       name: create build archive for random twister module PY2
-    #       command: cd projects/random-twister/ && tar -zcvf build-py2_tarball.tar.gz build && ls && cp build-py2_tarball.tar.gz /tmp/
-    #   - run:
-    #       name: cleans the previous build
-    #       command: cd projects/random-twister/ && rm -rf build/*
-    #   - run:
-    #       name: builds and runs the twister module PY3
-    #       command: cd projects/random-twister/ && python3 setup.py build && cd build && cd lib* && cp ../../test.py . && python3 test.py
-    #   - run:
-    #       name: create build archive for random twister module PY3
-    #       command: cd projects/random-twister/ && tar -zcvf build-py3_tarball.tar.gz build && ls && cp build-py3_tarball.tar.gz /tmp/
-    #   - store_artifacts:
-    #       path: /tmp/build-py2_tarball.tar.gz
-    #       destination: debian-build-py2_tarball.tar.gz
-    #   - store_artifacts:
-    #       path: /tmp/build-py3_tarball.tar.gz
-    #       destination: debian-build-py3_tarball.tar.gz
+      - run:
+          name: builds and runs the twister module PY2
+          command: cd projects/random-twister/ && python2 setup.py build && cd build && cd lib* && cp ../../test.py . && python2 test.py
+      - run:
+          name: create build archive for random twister module PY2
+          command: cd projects/random-twister/ && tar -zcvf build-py2_tarball.tar.gz build && ls && cp build-py2_tarball.tar.gz /tmp/
+      - run:
+          name: cleans the previous build
+          command: cd projects/random-twister/ && rm -rf build/*
+      - run:
+          name: builds and runs the twister module PY3
+          command: cd projects/random-twister/ && python3 setup.py build && cd build && cd lib* && cp ../../test.py . && python3 test.py
+      - run:
+          name: create build archive for random twister module PY3
+          command: cd projects/random-twister/ && tar -zcvf build-py3_tarball.tar.gz build && ls && cp build-py3_tarball.tar.gz /tmp/
+      - store_artifacts:
+          path: /tmp/build-py2_tarball.tar.gz
+          destination: debian-build-py2_tarball.tar.gz
+      - store_artifacts:
+          path: /tmp/build-py3_tarball.tar.gz
+          destination: debian-build-py3_tarball.tar.gz
   # UBUNTU
   job-1-ubuntu:
     docker:
