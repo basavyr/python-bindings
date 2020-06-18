@@ -224,6 +224,9 @@ jobs:
       - run:
           name: tests the C-array converter
           command: cd projects/convert-array/ && cd build && cd lib* && cp ../../test.py . && python3 test.py
+      - run:
+          name: test the class-module
+          command: cd projects/class-module/ && python3 test.py
       - store_artifacts:
           path: /tmp/build-py2_tarball.tar.gz
           destination: centos-build-py2_tarball.tar.gz
