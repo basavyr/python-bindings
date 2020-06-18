@@ -1,18 +1,18 @@
-echo 'WE MADE IT INTO THE DARWIN BUILD SCRIPT'
-echo '*********************************'
-echo 'Building the C++ extenstion for Python@2'
-echo '*********************************'
-rm *.out
-rm -rf build/*
-/usr/bin/python2 setup.py build
-echo '*********************************'
-echo 'Testing the C++ extenstion for Python@2'
-echo '*********************************'
-# cp test.py build/lib.macosx-10.15-x86_64-2.7/test.py
-cd build/lib*
-cp ../../test.py .
-/usr/bin/python2 test.py
-# /usr/bin/python2 build/lib.macosx-10.15-x86_64-2.7/test.py
+# echo 'WE MADE IT INTO THE DARWIN BUILD SCRIPT'
+# echo '*********************************'
+# echo 'Building the C++ extenstion for Python@2'
+# echo '*********************************'
+# rm *.out
+# rm -rf build/*
+# /usr/bin/python2 setup.py build
+# echo '*********************************'
+# echo 'Testing the C++ extenstion for Python@2'
+# echo '*********************************'
+# # cp test.py build/lib.macosx-10.15-x86_64-2.7/test.py
+# cd build/lib*
+# cp ../../test.py .
+# /usr/bin/python2 test.py
+# # /usr/bin/python2 build/lib.macosx-10.15-x86_64-2.7/test.py
 echo '*********************************'
 echo 'Building the C++ extenstion for Python@3'
 echo '*********************************'
@@ -23,7 +23,7 @@ cd .. # go back in the main sub-project after buid on v2
 echo '*********************************'
 echo 'Testing the C++ extenstion for Python@3'
 echo '*********************************'
-cd build/lib.macosx-10.14*
+cd build/lib.macosx*
 cp ../../test.py .
 /usr/bin/python3 test.py
 # cp test.py build/lib.macosx-10.14-x86_64-3.7/test.py

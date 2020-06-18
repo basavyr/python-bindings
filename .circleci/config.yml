@@ -251,11 +251,41 @@ jobs:
     #   - run:
     #       name: runs the async-project PY3
     #       command: "cd projects/async-treahds/ && python3 setup.py build && cd build &&cd lib* && cp ../../test.py . && python3 test.py"
-
+  # CENTOS- 3
+  job-3-centos:
+    docker:
+      - image: "centos:latest"
+    steps:
+      - checkout
+      - run:
+          name: install updates
+          command: yum -y update && yum -y upgrade
+      - run:
+          name: install which  and tree package so we can check what is good
+          command: yum -y install which tree
+      - run:
+          name: install dev package
+          command: dnf groupinstall -y "Development Tools"
+      - run:
+          name: install python2 with dnf
+          command: dnf install -y python2
+      - run:
+          name: install python3 with dnf
+          command: dnf install -y python3
+      - run:
+          name: install python2 devel package # for getting the "Python.h" header file
+          command: dnf install -y python2-devel # fixes missing header on build time
+      - run:
+          name: install python3 devel package # for getting the "Python.h" header file when building with python3
+          command: dnf install -y python3-devel # fixes missing header on build time
+      - run:
+          name: run the class module
+          command: cd projects/class-module && chmod 775 run.sh && ./run.sh
 workflows:
   version: 2.1
   start-containers:
     jobs:
-      - job-0-debian
-      - job-1-ubuntu
-      - job-2-centos
+    #   - job-0-debian
+    #   - job-1-ubuntu
+    #   - job-2-centos
+      - job-3-centos
