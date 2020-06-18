@@ -7,6 +7,8 @@
 #include <string>
 #include <algorithm>
 
+static const char null_string_object[] = "<0_py_string>";
+
 //Class objects (variables)
 typedef struct
 {
@@ -70,8 +72,8 @@ static PyObject *MClass_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
             return NULL;
         }
 
-        self->py_string = PyBytes_FromString("<0_py_string>");
-        // self->py_string = PyUnicode_FromString("<0_py_string >");
+        // self->py_string = PyBytes_FromString(null_string_object);
+        self->py_string = PyBytes_FromString("");
         if (self->py_string == NULL)
         {
             Py_DECREF(self);
@@ -154,10 +156,10 @@ static PyMemberDef MClass_MemberDef[] = {
 PyObject *MClass_stringer(MClass *self, PyObject *args);
 PyObject *MClass_content(MClass *self);
 PyObject *MClass_normalize(MClass *self, PyObject *args);
-// PyObject *MClass_sort(MClass *self, PyObject *args);
+PyObject *MClass_sort(MClass *self);
 
 static PyMethodDef MClass_MethodDef[] = {
-    // {"sort", (PyCFunction)MClass_sort, METH_VARARGS, "Returns the string from the class py_string byte object"},
+    {"sort", (PyCFunction)MClass_sort, METH_NOARGS, "Returns the string from the class py_string byte object"},
     {"normalize", (PyCFunction)MClass_normalize, METH_VARARGS, "Returns the string from the class py_string byte object"},
     {"stringer", (PyCFunction)MClass_stringer, METH_VARARGS, "Returns the string from the class py_string byte object"},
     {"name", (PyCFunction)MClass_content, METH_NOARGS, "Returns the variables from the class object"},
