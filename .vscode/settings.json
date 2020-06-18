@@ -16,7 +16,8 @@
         "string_view": "cpp",
         "system_error": "cpp",
         "typeinfo": "cpp",
-        "future": "cpp"
+        "future": "cpp",
+        "algorithm": "cpp"
     },
     "python.pythonPath": "/usr/local/bin/python3"
 }
