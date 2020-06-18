@@ -78,7 +78,13 @@ jobs:
       - run:
           name: create build archive for random twister module PY3
           command: cd projects/random-twister/ && tar -zcvf build-py3_tarball.tar.gz build && ls && cp build-py3_tarball.tar.gz /tmp/
-      - store_artifacts:
+      - run:
+          name: builds the C-array converter
+          command: cd projects/convert-array/ && python3 setup.py build
+      - run:
+          name: tests the C-array converter
+          command: cd projects/convert-array/ && cd build && cd lib* && cp ../../test.py . && python3 test.py      
+     - store_artifacts:
           path: /tmp/build-py2_tarball.tar.gz
           destination: debian-build-py2_tarball.tar.gz
       - store_artifacts:
@@ -158,6 +164,12 @@ jobs:
       - run:
           name: create build archive for random twister module PY3
           command: cd projects/random-twister/ && tar -zcvf build-py3_tarball.tar.gz build && ls && cp build-py3_tarball.tar.gz /tmp/
+      - run:
+          name: builds the C-array converter
+          command: cd projects/convert-array/ && python3 setup.py build
+      - run:
+          name: tests the C-array converter
+          command: cd projects/convert-array/ && cd build && cd lib* && cp ../../test.py . && python3 test.py      
       - store_artifacts:
           path: /tmp/build-py2_tarball.tar.gz
           destination: ubuntu-build-py2_tarball.tar.gz
@@ -208,7 +220,7 @@ jobs:
           command: cd projects/random-twister/ && tar -zcvf build-py3_tarball.tar.gz build && ls && cp build-py3_tarball.tar.gz /tmp/
       - run:
           name: builds the C-array converter
-          command: cd projects/convert-array/ && python3 setup.py
+          command: cd projects/convert-array/ && python3 setup.py build
       - run:
           name: tests the C-array converter
           command: cd projects/convert-array/ && cd build && cd lib* && cp ../../test.py . && python3 test.py
