@@ -289,7 +289,7 @@ jobs:
           command: cd projects/class-module && cd build && cd lib* && python3 test.py
       - run:
           name: save the script as a log 
-          command: cd projects/class-module && cd build && cd lib* && chmod 775 ./run.sh && ./run.sh >> build_process.log && cp build_process.log /tmp/
+          command: cd projects/class-module && cd build && cd lib* && chmod 775 run.sh && ./run.sh >> build_process.log && cp build_process.log /tmp/
       - store_artifacts:
           path: /tmp/build_process.log
           destination: centOS-build_process.log
