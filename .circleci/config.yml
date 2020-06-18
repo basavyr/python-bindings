@@ -279,8 +279,20 @@ jobs:
           name: install python3 devel package # for getting the "Python.h" header file when building with python3
           command: dnf install -y python3-devel # fixes missing header on build time
       - run:
-          name: run the class module
-          command: cd projects/class-module && chmod 775 run.sh && ./run.sh
+          name: build the class module
+          command: cd projects/class-module && python3 setup.py build
+      - run:
+          name: copy the script to the lib location
+          command: cd projects/class-module && cp test.py build/lib*
+      - run:
+          name: run the build script
+          command: cd projects/class-module && cd build && cd lib* && python3 test.py
+      - run:
+          name: save the script as a log 
+          command: cd projects/class-module && cd build && cd lib* && chmod 775 ./run.sh && ./run.sh >> build_process.log && cp build_process.log /tmp/
+      - store_artifacts:
+          path: /tmp/build_process.log
+          destination: centOS-build_process.log
 workflows:
   version: 2.1
   start-containers:
