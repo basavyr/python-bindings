@@ -84,7 +84,7 @@ jobs:
       - run:
           name: tests the C-array converter
           command: cd projects/convert-array/ && cd build && cd lib* && cp ../../test.py . && python3 test.py      
-     - store_artifacts:
+      - store_artifacts:
           path: /tmp/build-py2_tarball.tar.gz
           destination: debian-build-py2_tarball.tar.gz
       - store_artifacts:
