@@ -277,7 +277,7 @@ jobs:
           command: cd projects/class-module && python3 setup.py build
       - run:
           name: copy the script to the lib location
-          command: cd projects/class-module && cd build/lib* && cp ../../test.py .
+          command: cd projects/class-module/build/lib* && cp ../../test.py .
       - run:
           name: run the build script
           command: cd projects/class-module && cd build/lib* && python3 test.py
