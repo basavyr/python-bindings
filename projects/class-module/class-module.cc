@@ -132,7 +132,7 @@ PyObject *MClass_normalize(MClass *self, PyObject *args)
     return NULL;
 }
 
-PyObject *MClass_sort(MClass *self)
+PyObject *MClass_sort(MClass *self, PyObject *args)
 {
     Py_ssize_t py_list_size = PyList_GET_SIZE(self->py_list);
     if (!py_list_size || !PyList_Check(self->py_list))
@@ -140,6 +140,16 @@ PyObject *MClass_sort(MClass *self)
         PyErr_SetString(PyExc_AttributeError, "This is an empty array - no sorting can be performed");
         return NULL;
     }
+    int ordering;
+    if (!PyArg_ParseTuple(args, "|i", &ordering))
+        return NULL;
+
+    auto compare = [&](auto x, auto y) {
+        if (ordering == -1)
+            return x > y;
+        return x < y;
+    };
+
     std::vector<long> cxx_list;
     for (auto id = 0; id < py_list_size; ++id)
     {
@@ -151,7 +161,7 @@ PyObject *MClass_sort(MClass *self)
         }
         cxx_list.emplace_back(PyLong_AsLong(current_py_list_item));
     }
-    std::sort(cxx_list.begin(), cxx_list.end());
+    std::sort(cxx_list.begin(), cxx_list.end(), compare);
     PyObject *sorted_py_list = PyList_New(py_list_size);
     for (auto id = 0; id < py_list_size; ++id)
     {

@@ -156,10 +156,10 @@ static PyMemberDef MClass_MemberDef[] = {
 PyObject *MClass_stringer(MClass *self, PyObject *args);
 PyObject *MClass_content(MClass *self);
 PyObject *MClass_normalize(MClass *self, PyObject *args);
-PyObject *MClass_sort(MClass *self);
+PyObject *MClass_sort(MClass *self, PyObject *args);
 
 static PyMethodDef MClass_MethodDef[] = {
-    {"sort", (PyCFunction)MClass_sort, METH_NOARGS, "Returns the string from the class py_string byte object"},
+    {"sort", (PyCFunction)MClass_sort, METH_VARARGS, "Returns the string from the class py_string byte object"},
     {"normalize", (PyCFunction)MClass_normalize, METH_VARARGS, "Returns the string from the class py_string byte object"},
     {"stringer", (PyCFunction)MClass_stringer, METH_VARARGS, "Returns the string from the class py_string byte object"},
     {"name", (PyCFunction)MClass_content, METH_NOARGS, "Returns the variables from the class object"},
