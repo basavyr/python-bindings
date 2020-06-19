@@ -83,7 +83,7 @@ jobs:
           command: cd projects/convert-array/ && python3 setup.py build
       - run:
           name: tests the C-array converter
-          command: cd projects/convert-array/ && cd build && cd lib* && cp ../../test.py . && python3 test.py      
+          command: cd projects/convert-array/ && cd build && cd lib* && cp ../../test.py . && python3 test.py
       - store_artifacts:
           path: /tmp/build-py2_tarball.tar.gz
           destination: debian-build-py2_tarball.tar.gz
@@ -169,7 +169,7 @@ jobs:
           command: cd projects/convert-array/ && python3 setup.py build
       - run:
           name: tests the C-array converter
-          command: cd projects/convert-array/ && cd build && cd lib* && cp ../../test.py . && python3 test.py      
+          command: cd projects/convert-array/ && cd build && cd lib* && cp ../../test.py . && python3 test.py
       - store_artifacts:
           path: /tmp/build-py2_tarball.tar.gz
           destination: ubuntu-build-py2_tarball.tar.gz
@@ -267,14 +267,8 @@ jobs:
           name: install dev package
           command: dnf groupinstall -y "Development Tools"
       - run:
-          name: install python2 with dnf
-          command: dnf install -y python2
-      - run:
           name: install python3 with dnf
           command: dnf install -y python3
-      - run:
-          name: install python2 devel package # for getting the "Python.h" header file
-          command: dnf install -y python2-devel # fixes missing header on build time
       - run:
           name: install python3 devel package # for getting the "Python.h" header file when building with python3
           command: dnf install -y python3-devel # fixes missing header on build time
@@ -283,12 +277,12 @@ jobs:
           command: cd projects/class-module && python3 setup.py build
       - run:
           name: copy the script to the lib location
-          command: cd projects/class-module && cp test.py build/lib*
+          command: cd projects/class-module && cd build/lib* && cp ../../test.py .
       - run:
           name: run the build script
           command: cd projects/class-module && cd build && cd lib* && python3 test.py
       - run:
-          name: save the script as a log 
+          name: save the script as a log
           command: cd projects/class-module &&  chmod 775 run.sh && ./run.sh >> build_process.log && cp build_process.log /tmp/
       - store_artifacts:
           path: /tmp/build_process.log
@@ -297,7 +291,7 @@ workflows:
   version: 2.1
   start-containers:
     jobs:
-    #   - job-0-debian
-    #   - job-1-ubuntu
-    #   - job-2-centos
+      #   - job-0-debian
+      #   - job-1-ubuntu
+      #   - job-2-centos
       - job-3-centos
