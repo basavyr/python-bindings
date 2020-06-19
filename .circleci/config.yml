@@ -280,7 +280,7 @@ jobs:
           command: cd projects/class-module && cd build/lib* && cp ../../test.py .
       - run:
           name: run the build script
-          command: cd projects/class-module && cd build && cd lib* && python3 test.py
+          command: cd projects/class-module && cd build/lib* && python3 test.py
       - run:
           name: save the script as a log
           command: cd projects/class-module &&  chmod 775 run.sh && ./run.sh >> build_process.log && cp build_process.log /tmp/
